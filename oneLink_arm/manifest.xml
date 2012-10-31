@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<model>
+  <name>oneLink Arm</name>
+  <version>1.0</version>
+  <sdf>model.sdf</sdf>
+
+  <author>
+    <name>Atsushi Yamada</name>
+    <email>ayamada@bwh.harvard.edu</email>
+  </author>
+
+  <description>
+    A simple one link arm created based on simple_arm model.
+  </description>
+</model>

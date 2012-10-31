@@ -1,0 +1,136 @@
+<?xml version="1.0" ?>
+<gazebo version="1.2">
+  <model name="oneLink_arm">
+    <link name="arm_base">
+      <inertial>
+        <pose>0 0 0.00099 0 0 0</pose>
+        <inertia>
+          <ixx>1.11</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>100.11</iyy>
+          <iyz>0</iyz>
+          <izz>1.01</izz>
+        </inertia>
+        <mass>101.0</mass>
+      </inertial>
+      <collision name="arm_base_geom">
+        <pose>0 0 0.05 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 1.0 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="arm_base_geom_visual">
+        <pose>0 0 0.05 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 1.0 0.1</size>
+          </box>
+        </geometry>
+        <material>
+          <script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Blue</name></script>
+        </material>
+      </visual>
+      <collision name="arm_base_geom_arm_trunk">
+        <pose>0 0 0.6 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>1.0</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="arm_base_geom_arm_trunk_visual">
+        <pose>0 0 0.6 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>1.0</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Red</name></script>
+        </material>
+      </visual>
+    </link>
+    <link name="arm_shoulder_pan">
+      <pose>0 0 1.1 0 0 0</pose>
+      <inertial>
+        <pose>0.045455 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.011</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0225</iyy>
+          <iyz>0</iyz>
+          <izz>0.0135</izz>
+        </inertia>
+        <mass>1.1</mass>
+      </inertial>
+      <collision name="arm_shoulder_pan_geom">
+        <pose>0 0 0.05 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>0.1</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="arm_shoulder_pan_geom_visual">
+        <pose>0 0 0.05 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>0.1</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Yellow</name></script>
+        </material>
+      </visual>
+      <collision name="arm_shoulder_pan_geom_arm_shoulder">
+        <pose>0.55 0 0.05 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 0.05 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="arm_shoulder_pan_geom_arm_shoulder_visual">
+        <pose>0.55 0 0.05 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 0.05 0.1</size>
+          </box>
+        </geometry>
+        <material>
+          <script><uri>file://media/materials/scripts/gazebo.material</uri><name>Gazebo/Yellow</name></script>
+        </material>
+      </visual>
+    </link>
+    <joint name="arm_base_joint" type="revolute">
+      <parent>world</parent>
+      <child>arm_base</child>
+      <axis>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+        </limit>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    <joint name="arm_shoulder_pan_joint" type="revolute">
+      <parent>world</parent>
+      <child>arm_shoulder_pan</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+	<plugin filename="libmy_plugin.so" name="my_plugin">
+        <arm_base_joint>arm_base_joint</arm_base_joint>
+        <arm_shoulder_pan_joint>arm_shoulder_pan_joint</arm_shoulder_pan_joint>
+        </plugin>
+  </model>
+</gazebo>
